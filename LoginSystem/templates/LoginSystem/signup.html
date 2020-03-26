@@ -4,14 +4,31 @@
 <title>Signup Page</title>
 </head>
 <body>
-  <form action='' method='POST'>
-  	<input type='text' name='first' placeholder='First Name'><br>
-      <input type='text' name='last' placeholder='Last Name'><br>
-  	<input type='text' name='id' placeholder='Employee ID'><br>
-      <input type='password' name='pwd1' placeholder='Password'><br>
-  	<input type='password' name='pwd2' placeholder='Verify Password'><br>
-		<button type='submit'>Login</button>
-  </form>
+<!--  <form action='' method='POST'>-->
+<!--  	<input type='text' name='first' placeholder='First Name'><br>-->
+<!--      <input type='text' name='last' placeholder='Last Name'><br>-->
+<!--  	<input type='text' name='id' placeholder='Employee ID'><br>-->
+<!--      <input type='password' name='pwd1' placeholder='Password'><br>-->
+<!--  	<input type='password' name='pwd2' placeholder='Verify Password'><br>-->
+<!--		<button type='submit'>Login</button>-->
+<!--  </form>-->
+    <h2>Sign up Form</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+        <p>
+          {{ field.label_tag }}<br>
+          {{ field }}
+          {% if field.help_text %}
+            <small style="color: grey">{{ field.help_text }}</small>
+          {% endif %}
+          {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
+          {% endfor %}
+        </p>
+      {% endfor %}
+      <button type="submit">Sign up</button>
+    </form>
 
 </body>
 </html>
