@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from .models import EmployeeType
 
 TYPES = [('manager', 'Manager'), ('computers', 'Computers')]
 
@@ -14,3 +15,10 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('employeeFirst', 'employeeLast', 'employeeId', 'employeeType', 'password1', 'password2', )
+
+
+class EmployeeTypeForm(forms.ModelForm):
+    class Meta:
+        model = EmployeeType
+        fields = ('EmployeeType',)
+
